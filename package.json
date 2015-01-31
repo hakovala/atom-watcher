@@ -1,0 +1,20 @@
+{
+  "name": "atom-watcher",
+  "version": "0.1.0",
+  "description": "Watch file changes and live reload Atom-Shell app.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hakovala/atom-watcher"
+  },
+  "author": "Harri Kovalainen <hakovala@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "atom",
+    "atom-shell",
+    "update",
+    "reload",
+    "live-reload",
+    "watch"
+  ]
+}
