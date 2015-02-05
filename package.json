@@ -1,6 +1,6 @@
 {
   "name": "atom-watcher",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Watch file changes and live reload Atom-Shell app.",
   "main": "index.js",
   "repository": {
