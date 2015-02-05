@@ -49,6 +49,7 @@ function watchStyles() {
 				time: new Date().getTime()
 			};
 			style.href = url.format(uri);
+			var dummy = document.body.offsetTop;
 		});
 		watchers.push(watchers);
 	}
