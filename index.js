@@ -5,7 +5,7 @@ var fs = require('fs');
 var path = require('path');
 var url = require('url');
 
-var reload_delay = 1000;
+var reload_delay = 500;
 var watchers = [];
 
 module.exports = function(opt) {
