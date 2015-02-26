@@ -12,19 +12,23 @@ they change.
 
 With default options:
 
-	require('atom-watcher')();
+```js
+require('atom-watcher')();
+```
 
 With options:
 
-	require('atom-watcher')({
-		reload_delay: 500, // wait 500ms before reloading
-		html: false, // disable reload on html change
-		css: false, // disable style updates
-		script: false, // disable reload on script change
-	});
+```js
+require('atom-watcher')({
+	reload_delay: 5000, // wait 5s before reloading (default 500ms) 
+	html: false, // disable reload on html change (default true)
+	css: false, // disable style updates (default true)
+	script: false, // disable reload on script change (default true)
+});
+```
 
-After that if any html or script file change, the page is reloaded.
-If styles change only that css file is reloaded.
+If any html or script file change, the page is reloaded after specified delay.
+If styles change only that css file is refreshed after specified delay.
 
 Atom Watcher automatically watches all script files that are used with
 require or defined in html page.
