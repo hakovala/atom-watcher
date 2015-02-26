@@ -16,5 +16,8 @@
     "reload",
     "live-reload",
     "watch"
-  ]
+  ],
+  "dependencies": {
+    "rtimer": "^0.1.0"
+  }
 }

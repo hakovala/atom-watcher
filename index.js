@@ -4,15 +4,22 @@
 var fs = require('fs');
 var path = require('path');
 var url = require('url');
+var rtimer = require('rtimer');
 
 var reload_delay = 500;
 var watchers = [];
+
+// timeout for reloading whole page
+var reloadTimeout = rtimer(function() {
+	document.location.reload();
+}, reload_delay);
 
 module.exports = function(opt) {
 	opt = opt || {};
 
 	if (typeof opt.reload_delay !== 'undefined') {
 		reload_delay = opt.reload_delay;
+		reloadTimeout.delay = reload_delay;
 	}
 	if (typeof opt.html === 'undefined' || opt.html) {
 		watchHTML();
@@ -24,16 +31,6 @@ module.exports = function(opt) {
 		watchScripts();
 	}
 };
-
-var reload_timeout;
-function reloadDelayed() {
-	if (reload_timeout) {
-		clearTimeout(reload_timeout);
-	}
-	reload_timeout = setTimeout(function() {
-		document.location.reload();
-	}, reload_delay);
-}
 
 function watchStyles() {
 	var styles = document.querySelectorAll('link[rel=stylesheet]');
@@ -69,7 +66,7 @@ function watchFile(filepath) {
 		persistent: false
 	}, function(e, filename) {
 		console.log(e + ': ' + filename);
-		reloadDelayed();
+		reloadTimeout.set();
 	});
 	watchers.push(w);
 }
