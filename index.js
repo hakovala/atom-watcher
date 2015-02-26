@@ -45,11 +45,16 @@ function watchStyles() {
 			persistent: false
 		}, function(e, filename) {
 			console.log(e + ': ' + filename);
-			uri.query = {
-				time: new Date().getTime()
-			};
-			style.href = url.format(uri);
-			var dummy = document.body.offsetTop;
+			// delay the style reload (fixes issues when building stylesheets)
+			setTimeout(function() {
+				uri.query = {
+					time: new Date().getTime()
+				};
+				style.href = url.format(uri);
+
+				// force re-flow the page
+				var dummy = document.body.offsetTop;
+			}, reload_delay);
 		});
 		watchers.push(watchers);
 	}
