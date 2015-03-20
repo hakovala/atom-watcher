@@ -80,11 +80,21 @@ function watchScripts() {
 
 	for (var i = 0; i < scripts.length; i++) {
 		var uri = url.parse(scripts[i].src);
-		watchFile(uri.pathname);
+		watchScript(uri.pathname);
 	}
 
 	for (var filepath in require.cache) {
-		watchFile(filepath);
+		watchScript(filepath);
 	}
 }
 
+var splitCache = {};
+function watchScript(filepath) {
+	if (~filepath.indexOf('.asar')) {
+		filepath = filepath.split('.asar')[0] + '.asar';
+	}
+	if (!splitCache[filepath]) {
+		splitCache[filepath] = true;
+		watchFile(filepath);
+	}
+}
