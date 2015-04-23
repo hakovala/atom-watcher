@@ -79,8 +79,10 @@ function watchScripts() {
 	var scripts = document.querySelectorAll('script');
 
 	for (var i = 0; i < scripts.length; i++) {
-		var uri = url.parse(scripts[i].src);
-		watchScript(uri.pathname);
+		if (scripts[i].src) {
+			var uri = url.parse(scripts[i].src);
+			watchScript(uri.pathname);
+		}
 	}
 
 	for (var filepath in require.cache) {
